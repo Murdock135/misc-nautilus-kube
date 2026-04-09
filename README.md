@@ -26,7 +26,7 @@ Put the names of all namespaces you need access to in the `namespaces.txt` file,
 
 4. Check that the Nautilus context exists and is set:
 	```sh
-	bash bin/check_config.sh
+	bash check_config.sh
 	```
 
 5. List all cluster nodes (This will launch your browser for authentication if you are not already logged in):
