@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+# Ensure kubectl plugins installed by this repo are discoverable.
+if [[ -d "$HOME/.local/bin" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 NAMESPACES_FILE="$REPO_ROOT/namespaces.txt"
@@ -26,7 +31,12 @@ kubectl config use-context nautilus >/dev/null
 # ========================================================================
 
 # Read namespaces from the file, ignoring empty lines and comments.
-mapfile -t namespaces < <(grep -vE '^\s*(#|$)' "$NAMESPACES_FILE")
+namespaces=()
+while IFS= read -r namespace || [[ -n "$namespace" ]]; do
+    namespace="${namespace%$'\r'}"
+    [[ "$namespace" =~ ^[[:space:]]*(#|$) ]] && continue
+    namespaces+=("$namespace")
+done < "$NAMESPACES_FILE"
 
 [[ ${#namespaces[@]} -gt 0 ]] || {
     echo "No namespaces found in $NAMESPACES_FILE" >&2
