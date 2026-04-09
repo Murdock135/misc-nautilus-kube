@@ -5,7 +5,14 @@
 Please read this the instructions on [nrp.ai](https://nrp.ai/documentation/userdocs/start/getting-started/) before proceeding.
 
 ## Pre-setup
-Put the names of all namespaces you need access to in the `namespaces.txt` file, one per line. This will be used by the `check_cluster_access.sh` script to verify that you have access to all required namespaces.
+1. Put the names of all namespaces you need access to in the `namespaces.txt` file, one per line. This will be used by the `check_cluster_access.sh` script to verify that you have access to all required namespaces.
+
+2. Make sure your local binary directory (e.g. `~/.local/bin`) is in your `PATH` so that kubectl plugins installed by this repo are discoverable. You can add the following lines to your shell profile (e.g. `~/.bashrc` or `~/.zshrc`):
+```sh
+if [[ -d "$HOME/.local/bin" ]]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+```
 
 ## Setup
 
