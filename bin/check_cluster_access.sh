@@ -2,11 +2,6 @@
 
 set -euo pipefail
 
-# Ensure kubectl plugins installed by this repo are discoverable.
-if [[ -d "$HOME/.local/bin" ]]; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 NAMESPACES_FILE="$REPO_ROOT/namespaces.txt"
