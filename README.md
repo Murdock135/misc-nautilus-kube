@@ -29,14 +29,14 @@ Put the names of all namespaces you need access to in the `namespaces.txt` file,
 	bash bin/check_config.sh
 	```
 
-5. Check access to all required namespaces:
-	```sh
-	bash bin/check_cluster_access.sh
-	```
-
-6. List all cluster nodes (This will launch your browser for authentication if you are not already logged in):
+5. List all cluster nodes (This will launch your browser for authentication if you are not already logged in):
 	```sh
 	bash bin/get_nodes.sh
+	```
+
+6. Check access to all required namespaces:
+	```sh
+	bash bin/check_cluster_access.sh
 	```
 
 -- END --
